@@ -18,8 +18,8 @@ if (CMAKE_CXX_CPPCHECK)
 endif()
 
 add_compile_options(
-  "-Wall" "-Wpedantic" "-Wextra" "-fexceptions"
-  "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
+    "-Wall" "-Wpedantic" "-Wextra" "-fexceptions"
+    "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
 )
 
 add_subdirectory(src)
