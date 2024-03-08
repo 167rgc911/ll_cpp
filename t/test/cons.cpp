@@ -16,7 +16,26 @@
  * =====================================================================================
  */
 
+#include <iostream>
+
+#include "aa.h"
+
 int main(void)
 {
+    testAA aa("p0", "p1");
+    aa.print("init");
+
+    auto s1 = aa["param0"];
+    std::cout << std::endl << s1 << std::endl;
+    aa.print("operator[]");
+
+    auto s2 = aa.param1;
+    std::cout << std::endl << s2 << std::endl;
+    aa.print("member param1 ");
+
+    auto s3 = aa.param0;
+    std::cout << std::endl << s3 << std::endl;
+    aa.print("member param0 ");
+
     return 0;
 }
