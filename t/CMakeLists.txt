@@ -22,6 +22,8 @@ add_compile_options(
     "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
 )
 
+include_directories(include)
+
 add_subdirectory(src)
 
 include(CTest)
