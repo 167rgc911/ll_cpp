@@ -22,10 +22,10 @@
 
 int main(void)
 {
-    testAA<std::string, std::string> aa("p0", "p1");
+    testAA<std::string> aa("p0", "p1");
     aa.print("init aa ");
 
-    testAA<std::string, std::string> bb("q0", "q1");
+    testAA<std::string> bb("q0", "q1");
     bb.print("init bb ");
 
     if (! (bb == aa))

@@ -24,16 +24,16 @@
 #include <string>
 #include <iostream>
 
-template <typename F, typename S>
+template <typename T>
 class testAA
 {
-    typedef std::map<F, S> aa;
+    typedef std::map<std::string, T> aa;
 
     aa aa_;
-    const S& param0_;
-    const S& param1_;
+    const std::string& param0_;
+    const std::string& param1_;
 public:
-    testAA(const S& p0, const S& p1)
+    testAA(const T& p0, const T& p1)
         :
             param0_(p0),
             param1_(p1)
@@ -42,7 +42,7 @@ public:
         aa_.insert( {"param1", p1} );
     };
 
-    const S& operator[](const F& p)
+    const T& operator[](const std::string& p)
     {
         return aa_.at(p);
         /* if (! aa_.empty()) */
@@ -63,8 +63,8 @@ public:
     }
 
     /* getters */
-    const S& param0() const { return param0_; };
-    const S& param1() const { return param1_; };
+    const T& param0() const { return param0_; };
+    const T& param1() const { return param1_; };
 
     void print(const std::string comment)
     {

@@ -22,7 +22,7 @@
 
 int main(void)
 {
-    testAA<std::string, std::string> aa("p0", "p1");
+    testAA<std::string> aa("p0", "p1");
     aa.print("init aa ");
 
     auto s1 = aa["param0"];
