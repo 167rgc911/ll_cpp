@@ -55,6 +55,11 @@ public:
         /* return {}; */
     };
 
+    bool operator==(const testAA& other) const
+    {
+        return aa_ == other.aa_;
+    }
+
     /* getters */
     const std::string& param0() const { return param0_; };
     const std::string& param1() const { return param1_; };

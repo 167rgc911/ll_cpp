@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  cons.cpp
+ *       Filename:  access2.cpp
  *
  *    Description:  
  *
@@ -24,10 +24,6 @@ int main(void)
 {
     testAA aa("p0", "p1");
     aa.print("init");
-
-    auto s1 = aa["param0"];
-    std::cout << std::endl << s1 << '\n';
-    aa.print("operator[]");
 
     auto s2 = aa.param1();
     std::cout << std::endl << s2 << '\n';
