@@ -29,14 +29,13 @@ typedef std::map<std::string, std::string> aa;
 class testAA
 {
     aa aa_;
+    const std::string& param0_;
+    const std::string& param1_;
 public:
-    const std::string& param0;
-    const std::string& param1;
-
     testAA(const std::string& p0, const std::string& p1)
         :
-            param0(p0),
-            param1(p1)
+            param0_(p0),
+            param1_(p1)
     {
         aa_.insert( {"param0", p0} );
         aa_.insert( {"param1", p1} );
@@ -55,6 +54,10 @@ public:
         /* } */
         /* return {}; */
     };
+
+    /* getters */
+    const std::string& param0() const { return param0_; };
+    const std::string& param1() const { return param1_; };
 
     void print(const std::string comment)
     {
