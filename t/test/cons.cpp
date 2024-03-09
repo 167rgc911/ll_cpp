@@ -26,15 +26,15 @@ int main(void)
     aa.print("init");
 
     auto s1 = aa["param0"];
-    std::cout << std::endl << s1 << std::endl;
+    std::cout << std::endl << s1 << '\n';
     aa.print("operator[]");
 
     auto s2 = aa.param1;
-    std::cout << std::endl << s2 << std::endl;
+    std::cout << std::endl << s2 << '\n';
     aa.print("member param1 ");
 
     auto s3 = aa.param0;
-    std::cout << std::endl << s3 << std::endl;
+    std::cout << std::endl << s3 << '\n';
     aa.print("member param0 ");
 
     return 0;
