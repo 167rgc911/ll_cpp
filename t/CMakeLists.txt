@@ -2,8 +2,22 @@ cmake_minimum_required(VERSION 3.28)
 
 project(aa CXX)
 
-find_program( MEMORYCHECK_COMMAND valgrind )
-set( MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full" )
+set(CMAKE_CXX_STANDARD 11)
+set(CXX_STANDARD_REQUIRED YES)
+set(CXX_EXTENSIONS NO)
+
+set(CMAKE_CXX_CLANG_TIDY clang-tidy; -header-filter=.; -checks=-*,modernize-*)
+
+add_compile_options(-fsanitize=address)
+add_link_options(-fsanitize=address)
+
+add_compile_options(
+    "-Wall" "-Wpedantic" "-Wextra" "-fexceptions"
+    "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
+)
+
+find_program(MEMORYCHECK_COMMAND valgrind)
+set(MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
 
 find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
 if (CMAKE_CXX_CPPCHECK)
@@ -16,11 +30,6 @@ if (CMAKE_CXX_CPPCHECK)
             "--suppressions-list=${CMAKE_SOURCE_DIR}/CppCheckSuppressions.txt"
     )
 endif()
-
-add_compile_options(
-    "-Wall" "-Wpedantic" "-Wextra" "-fexceptions"
-    "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
-)
 
 include_directories(include)
 
