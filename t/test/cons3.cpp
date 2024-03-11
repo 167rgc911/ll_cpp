@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  cons1.cpp
+ *       Filename:  cons3.cpp
  *
  *    Description:  
  *
- *        Version:  1.0
- *        Created:  03/08/24 21:31:25
+ *        Version:  0.1
+ *        Created:  03/11/24 17:42:25
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -22,7 +22,8 @@
 
 int main(void)
 {
-    AA<std::string, std::string> aa("p0", "p1");
+    std::pair<std::string, std::string> p("p0", "p1");
+    AA<std::string, std::string> aa(p);
     aa.print("init aa ");
 
     AA<std::string, std::string> bb("p0", "p1");

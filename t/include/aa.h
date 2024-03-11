@@ -24,16 +24,26 @@
 #include <string>
 #include <iostream>
 
-template <typename T>
-class testAA
+template <typename K, typename V>
+class AA
 {
-    typedef std::map<std::string, T> aa;
+    typedef std::map<K, V> aa;
+    typedef std::pair<K, V> p_aa;
 
     aa aa_;
     const std::string& param0_;
     const std::string& param1_;
 public:
-    testAA(const T& p0, const T& p1)
+    AA(const p_aa& p)
+        :
+            param0_(p.first),
+            param1_(p.second)
+    {
+        aa_.insert( {"param0", p.first} );
+        aa_.insert( {"param1", p.second} );
+    };
+
+    AA(const V& p0, const V& p1)
         :
             param0_(p0),
             param1_(p1)
@@ -42,7 +52,7 @@ public:
         aa_.insert( {"param1", p1} );
     };
 
-    const T& operator[](const std::string& p)
+    const V& operator[](const K& p) const
     {
         return aa_.at(p);
         /* if (! aa_.empty()) */
@@ -57,19 +67,19 @@ public:
     };
 
 
-    bool operator==(const testAA& other) const
+    bool operator==(const AA& other) const
     {
         return aa_ == other.aa_;
     }
 
     /* getters */
-    const T& param0() const { return param0_; };
-    const T& param1() const { return param1_; };
+    const V& param0() const { return param0_; };
+    const V& param1() const { return param1_; };
 
     void print(const std::string comment)
     {
         std::cout << comment << "{";
-            for (const auto &pair : aa_)
+            for (auto& pair : aa_)
                 std::cout << "{" << pair.first << ": " << pair.second << "}";
             std::cout << "}\n";
     };

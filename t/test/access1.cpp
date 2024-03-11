@@ -22,18 +22,18 @@
 
 int main(void)
 {
-    testAA<std::string> aa("p0", "p1");
+    AA<std::string, std::string> aa("p0", "p1");
     aa.print("init aa ");
 
     auto s1 = aa["param0"];
-    std::cout << std::endl << s1 << '\n';
+    std::cout << "\n"<< s1 << "\n";
     if (s1 == "p0")
     {
         aa.print("operator[param0] ");
     }
 
     auto s2 = aa["param1"];
-    std::cout << std::endl << s2 << '\n';
+    std::cout << "\n" << s2 << "\n";
     if (s2 == "p1")
     {
         aa.print("operator[param1] ");
@@ -41,3 +41,4 @@ int main(void)
 
     return 0;
 }
+

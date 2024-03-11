@@ -22,16 +22,17 @@
 
 int main(void)
 {
-    testAA<std::string> aa("p0", "p1");
-    aa.print("init");
+    AA<std::string, std::string> aa("p0", "p1");
+    aa.print("init ");
 
     auto s2 = aa.param1();
-    std::cout << std::endl << s2 << '\n';
+    std::cout << "\n" << s2 << "\n";
     aa.print("member param1 ");
 
     auto s3 = aa.param0();
-    std::cout << std::endl << s3 << '\n';
+    std::cout << "\n" << s3 << "\n";;
     aa.print("member param0 ");
 
     return 0;
 }
+
