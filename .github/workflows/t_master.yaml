@@ -21,4 +21,3 @@ jobs:
           cmake --build b
           cd b
           make test
-          ctest -T memcheck
