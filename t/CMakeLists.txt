@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.28)
+# cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.16) # GH
 
 project(aa CXX)
 
@@ -6,7 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CXX_STANDARD_REQUIRED YES)
 set(CXX_EXTENSIONS NO)
 
-set(CMAKE_CXX_CLANG_TIDY clang-tidy; -header-filter=.; -checks=-*,modernize-*)
+# set(CMAKE_CXX_CLANG_TIDY clang-tidy; -header-filter=.; -checks=-*,modernize-*)
 
 add_compile_options(-fsanitize=address)
 add_link_options(-fsanitize=address)
