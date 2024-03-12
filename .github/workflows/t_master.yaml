@@ -9,15 +9,11 @@ on:
       - master
 
 jobs:
-  t:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: cmake action
-        uses: jwlawson/actions-setup-cmake@v1.14
-        with:
-          cmake-version: '3.16.x'
       - name: build 
         run: |
           cd t
