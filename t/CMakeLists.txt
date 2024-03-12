@@ -7,10 +7,10 @@ set(CMAKE_CXX_STANDARD 11)
 set(CXX_STANDARD_REQUIRED YES)
 set(CXX_EXTENSIONS NO)
 
-# set(CMAKE_CXX_CLANG_TIDY clang-tidy; -header-filter=.; -checks=-*,modernize-*)
+set(CMAKE_CXX_CLANG_TIDY $<$<CONFIG:DEBUG>:clang-tidy; -header-filter=.; -checks=-*,modernize-*>)
 
-add_compile_options(-fsanitize=address)
-add_link_options(-fsanitize=address)
+add_compile_options($<$<CONFIG:DEBUG>:-fsanitize=address>)
+add_link_options($<$<CONFIG:DEBUG>:-fsanitize=address>)
 
 add_compile_options(
     "-Wall" "-Wpedantic" "-Wextra" "-fexceptions"
