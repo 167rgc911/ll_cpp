@@ -21,7 +21,7 @@ jobs:
       - name: build 
         run: |
           cd t
-          cmake -S . -B b -DCMAKE_BUILD_TYPE=Debug
+          cmake -S . -B b -DCMAKE_BUILD_TYPE=Release
           cmake --build b
           cd b
           make test
