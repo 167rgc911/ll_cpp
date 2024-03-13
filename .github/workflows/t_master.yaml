@@ -14,10 +14,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: build 
+      - name: Build and test Release
         run: |
           cd t
           VERBOSE=1 cmake -S . -B b -DCMAKE_BUILD_TYPE=Release
           VERBOSE=1 cmake --build b
           cd b
           VERBOSE=1 make test
+      - name: Build and test Debug
+        run: |
+          cd t
+          VERBOSE=1 cmake -S . -B b -DCMAKE_BUILD_TYPE=Debug
+          VERBOSE=1 cmake --build b
+          cd b
+          VERBOSE=1 make test
+
