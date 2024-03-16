@@ -42,7 +42,8 @@ int main(void)
     std::vector<std::pair<std::string, std::string>> vp_;
     vp_.reserve(k_.size());
     std::transform(k_.begin(), k_.end(), v_.begin(), std::back_inserter(vp_),
-                    [](std::string k, std::string v) { return std::make_pair(k, v); });
+            [](std::string k, std::string v)
+                { return std::make_pair(k, v); });
 
     std::map<std::string, std::string> m_;
     for (auto& p_ : vp_)
