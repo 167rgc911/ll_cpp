@@ -13,3 +13,7 @@ add_test(NAME access1 COMMAND access1)
 add_executable(access2 access2.cpp)
 add_test(NAME access2 COMMAND access2)
 
+add_executable(csv csv.cpp)
+target_link_libraries(csv csv_io)
+add_test(NAME csv COMMAND csv)
+
