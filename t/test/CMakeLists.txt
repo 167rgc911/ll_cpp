@@ -16,4 +16,7 @@ add_test(NAME access2 COMMAND access2)
 add_executable(csv csv.cpp)
 target_link_libraries(csv csv_io)
 add_test(NAME csv COMMAND csv)
+set_property(TEST csv PROPERTY
+    FAIL_REGULAR_EXPRESSION "XXX [^a-z]"
+)
 
