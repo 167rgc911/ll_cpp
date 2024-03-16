@@ -52,6 +52,15 @@ int main(void)
         m_.insert(p_);
     }
 
+    /* for (const auto& p_ : m_) */
+    /* { */
+    /*     std::cout << '\t' << p_.first << '\t' << p_.second << '\n'; */
+    /* } */
+
+    std::for_each(m_.begin(), m_.end(),
+            [](const std::pair<std::string, std::string>& p_)
+                { std::cout << '\t' << p_.first << '\t' << p_.second << '\n'; });
+
     return retval;
 }
 
