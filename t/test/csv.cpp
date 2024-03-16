@@ -40,7 +40,8 @@ int main(void)
             std::cout << '\t' << col << '\n';
         }
     }
+    retval = r;
 
-    return 0;
+    return retval;
 }
 
