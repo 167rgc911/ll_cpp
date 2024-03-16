@@ -31,8 +31,8 @@ class AA
     typedef std::pair<K, V> p_aa;
 
     aa aa_;
-    const std::string& param0_;
-    const std::string& param1_;
+    std::string param0_;
+    std::string param1_;
 public:
     AA(const p_aa& p)
         :
@@ -41,7 +41,7 @@ public:
     {
         aa_.insert( {"param0", p.first} );
         aa_.insert( {"param1", p.second} );
-    };
+    }
 
     AA(const V& p0, const V& p1)
         :
@@ -50,7 +50,7 @@ public:
     {
         aa_.insert( {"param0", p0} );
         aa_.insert( {"param1", p1} );
-    };
+    }
 
     const V& operator[](const K& p) const
     {
@@ -64,7 +64,7 @@ public:
         /*     } */
         /* } */
         /* return {}; */
-    };
+    }
 
 
     bool operator==(const AA& other) const
