@@ -9,6 +9,10 @@ set(CMAKE_CXX_EXTENSIONS NO)
 
 set(CMAKE_CXX_CLANG_TIDY clang-tidy;-header-filter=.;-checks=-*,modernize-*)
 
+add_compile_definitions(
+    SOURCE_ROOT="${PROJECT_SOURCE_DIR}"
+)
+
 add_compile_options(
     "$<$<CONFIG:DEBUG>:-fsanitize=address;-fno-omit-frame-pointer>"
 )
