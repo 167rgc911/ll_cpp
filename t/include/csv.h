@@ -21,8 +21,11 @@
 #ifndef CSV_H
 #define CSV_H
 
+#include <map>
 #include <string>
 #include <vector>
+
+int construct_map(const std::vector<std::string>& k, const std::vector<std::string>& v, std::map<std::string, std::string>& m);
 
 int split(const std::string& s, char delim, std::vector<std::string>& o);
 

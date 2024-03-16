@@ -16,14 +16,35 @@
  * =====================================================================================
  */
 
+#include <map>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 
 #define _STRINGIFY(x) #x
 #define STRINGIFY(x) _STRINGIFY(x)
+
+int construct_map(const std::vector<std::string>& k, const std::vector<std::string>& v, std::map<std::string, std::string>& m)
+{
+    int retval = 0;
+
+    std::vector<std::pair<std::string, std::string>> vp;
+    vp.reserve(k.size());
+    std::transform(k.begin(), k.end(), v.begin(), std::back_inserter(vp),
+            [](std::string k, std::string v)
+                { return std::make_pair(k, v); });
+
+    for (auto& p : vp)
+    {
+        /* m_[p_.first] = p_.second; */
+        m.insert(p);
+    }
+
+    return retval;
+}
 
 int split(const std::string& s, char delim, std::vector<std::string>& o)
 {

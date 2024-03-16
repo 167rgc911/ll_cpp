@@ -16,11 +16,11 @@
  * =====================================================================================
  */
 
+#include <map>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <iostream>
-#include <map>
 #include <algorithm>
 
 #include "csv.h"
@@ -39,6 +39,7 @@ int main(void)
     split(csv_text_.front(), ',', k_);
     split(csv_text_.back(), ',', v_);
 
+#if 0
     std::vector<std::pair<std::string, std::string>> vp_;
     vp_.reserve(k_.size());
     std::transform(k_.begin(), k_.end(), v_.begin(), std::back_inserter(vp_),
@@ -56,6 +57,10 @@ int main(void)
     /* { */
     /*     std::cout << '\t' << p_.first << '\t' << p_.second << '\n'; */
     /* } */
+#else
+    std::map<std::string, std::string> m_;
+    retval = construct_map(k_, v_, m_);
+#endif
 
     std::for_each(m_.begin(), m_.end(),
             [](const std::pair<std::string, std::string>& p_)
