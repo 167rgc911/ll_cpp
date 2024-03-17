@@ -24,6 +24,15 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <algorithm>
+
+template <typename M, typename P>
+void print_pair(const M& m)
+{
+    std::for_each(m.begin(), m.end(),
+            [](const P& p)
+                { std::cout << " " << p.first << ": " << p.second; });
+}
 
 int construct_index(const std::vector<std::string>& v, const std::vector<unsigned long int>& i, std::vector<std::string>& o);
 
