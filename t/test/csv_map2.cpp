@@ -78,12 +78,20 @@ int main(void)
                     /* std::for_each(f_.begin(), f_.end(), */
                     /*         [](const std::pair<std::string, std::string>& pf_) */
                     /*             { std::cout << " " << pf_.first << ": " << pf_.second; }); */
-                    print_pair<std::map<std::string, std::string>, std::pair<std::string, std::string>>(f_);
+                    print_pair<
+                            std::map<std::string, std::string>,
+                            std::pair<std::string, std::string>
+                        >
+                        (f_);
                     std::cout << " row \t";
                     /* std::for_each(s_.begin(), s_.end(), */
                     /*         [](const std::pair<std::string, std::string>& ps_) */
                     /*             { std::cout << " " << ps_.first << ": " << ps_.second; }); */
-                    print_pair<std::map<std::string, std::string>, std::pair<std::string, std::string>>(s_);
+                    print_pair<
+                            std::map<std::string, std::string>,
+                            std::pair<std::string, std::string>
+                        >
+                        (s_);
                     std::cout << '\n';
                 });
 

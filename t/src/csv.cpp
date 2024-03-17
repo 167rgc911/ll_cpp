@@ -27,7 +27,11 @@
 #define _STRINGIFY(x) #x
 #define STRINGIFY(x) _STRINGIFY(x)
 
-int construct_index(const std::vector<std::string>& v, const std::vector<unsigned long int>& i, std::vector<std::string>& o)
+int construct_index(
+            const std::vector<std::string>& v,
+            const std::vector<unsigned long int>& i,
+            std::vector<std::string>& o
+        )
 {
     int retval = 0;
 
@@ -39,7 +43,11 @@ int construct_index(const std::vector<std::string>& v, const std::vector<unsigne
     return retval;
 }
 
-int construct_map(const std::vector<std::string>& k, const std::vector<std::string>& v, std::map<std::string, std::string>& m)
+int construct_map(
+            const std::vector<std::string>& k,
+            const std::vector<std::string>& v,
+            std::map<std::string, std::string>& m
+        )
 {
     int retval = 0;
 
@@ -58,7 +66,11 @@ int construct_map(const std::vector<std::string>& k, const std::vector<std::stri
     return retval;
 }
 
-int split(const std::string& s, char delim, std::vector<std::string>& o)
+int split(
+            const std::string& s,
+            const char delim,
+            std::vector<std::string>& o
+        )
 {
     int retval = 0;
     std::istringstream ss_(s);
@@ -70,14 +82,20 @@ int split(const std::string& s, char delim, std::vector<std::string>& o)
     return retval;
 }
 
-int read_csv_string(const std::string& s, std::vector<std::string>& o)
+int read_csv_string(
+            const std::string& s,
+            std::vector<std::string>& o
+        )
 {
     int retval = 0;
     retval = split(s, '\n', o);
     return retval;
 }
 
-int read_csv_file(const std::string& f, std::vector<std::string>& o)
+int read_csv_file(
+            const std::string& f,
+            std::vector<std::string>& o
+        )
 {
     int retval = 0;
 
