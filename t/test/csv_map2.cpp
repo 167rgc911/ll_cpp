@@ -38,8 +38,11 @@ int main(void)
     std::vector<std::string> k_;
     split(csv_text_.front(), ',', k_);
 
+    const std::vector<unsigned long int> ndx {0, 1};
+
     std::vector<std::string> ik_;
-    ik_.push_back(k_.at(0));
+    /* ik_.push_back(k_.at(0)); */
+    retval = construct_index(k_, ndx, ik_);
 
     for(unsigned long int i = 1; i < csv_text_.size(); ++i)
     {
@@ -47,7 +50,8 @@ int main(void)
         split(csv_text_.at(i), ',', v_);
 
         std::vector<std::string> iv_;
-        iv_.push_back(v_.at(0));
+        /* iv_.push_back(v_.at(0)); */
+        retval = construct_index(v_, ndx, iv_);
 
         std::map<std::string, std::string> i_;
         retval = construct_map(ik_, iv_, i_);

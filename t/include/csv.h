@@ -25,6 +25,8 @@
 #include <string>
 #include <vector>
 
+int construct_index(const std::vector<std::string>& v, const std::vector<unsigned long int>& i, std::vector<std::string>& o);
+
 int construct_map(const std::vector<std::string>& k, const std::vector<std::string>& v, std::map<std::string, std::string>& m);
 
 int split(const std::string& s, char delim, std::vector<std::string>& o);

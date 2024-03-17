@@ -27,6 +27,18 @@
 #define _STRINGIFY(x) #x
 #define STRINGIFY(x) _STRINGIFY(x)
 
+int construct_index(const std::vector<std::string>& v, const std::vector<unsigned long int>& i, std::vector<std::string>& o)
+{
+    int retval = 0;
+
+    for(auto& i_ : i)
+    {
+        o.push_back(v.at(i_));
+    }
+
+    return retval;
+}
+
 int construct_map(const std::vector<std::string>& k, const std::vector<std::string>& v, std::map<std::string, std::string>& m)
 {
     int retval = 0;
