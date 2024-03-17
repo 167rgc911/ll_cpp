@@ -27,3 +27,10 @@ set_property(TEST csv_map PROPERTY
     FAIL_REGULAR_EXPRESSION "XXX [^a-z]"
 )
 
+add_executable(csv_map2 csv_map2.cpp)
+target_link_libraries(csv_map2 csv_io)
+add_test(NAME csv_map2 COMMAND csv_map2)
+set_property(TEST csv_map2 PROPERTY
+    FAIL_REGULAR_EXPRESSION "XXX [^a-z]"
+)
+
