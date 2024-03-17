@@ -59,15 +59,31 @@ int main(void)
         std::map<std::string, std::string> m_;
         retval = construct_map(k_, v_, m_);
 
-        std::for_each(i_.begin(), i_.end(),
-                [](const std::pair<std::string, std::string>& p_)
-                    { std::cout << "index \t" << p_.first << '\t' << p_.second << '\n'; });
-        std::for_each(m_.begin(), m_.end(),
-                [](const std::pair<std::string, std::string>& p_)
-                    { std::cout << "row \t" << p_.first << '\t' << p_.second << '\n'; });
+        /* std::for_each(i_.begin(), i_.end(), */
+        /*         [](const std::pair<std::string, std::string>& p_) */
+        /*             { std::cout << "index \t" << p_.first << '\t' << p_.second << '\n'; }); */
+        /* std::for_each(m_.begin(), m_.end(), */
+        /*         [](const std::pair<std::string, std::string>& p_) */
+        /*             { std::cout << "row \t" << p_.first << '\t' << p_.second << '\n'; }); */
 
         vpm_.emplace_back(std::make_pair(i_, m_));
     }
+
+    std::for_each(vpm_.begin(), vpm_.end(),
+            [](const std::pair<std::map<std::string, std::string>, std::map<std::string, std::string>>& p_)
+                {
+                    std::map<std::string, std::string> f_ = p_.first;
+                    std::map<std::string, std::string> s_ = p_.second;
+                    std::cout << "index \t";
+                    std::for_each(f_.begin(), f_.end(),
+                            [](const std::pair<std::string, std::string>& pf_)
+                                { std::cout << " " << pf_.first << ": " << pf_.second; });
+                    std::cout << " row \t";
+                    std::for_each(s_.begin(), s_.end(),
+                            [](const std::pair<std::string, std::string>& ps_)
+                                { std::cout << " " << ps_.first << ": " << ps_.second; });
+                    std::cout << '\n';
+                });
 
     return retval;
 }
