@@ -1,0 +1,12 @@
+[submodule "ud/jr/Multithreading-Cpp-Course"]
+	path = ud/jr/Multithreading-Cpp-Course
+	url = https://github.com/JamesRaynard/Multithreading-Cpp-Course
+[submodule "ud/jr/Learn-Modern-Advanced-Cpp"]
+	path = ud/jr/Learn-Modern-Advanced-Cpp
+	url = https://github.com/JamesRaynard/Learn-Modern-Advanced-Cpp
+[submodule "ud/jr/Update-Modern-Cpp"]
+	path = ud/jr/Update-Modern-Cpp
+	url = https://github.com/JamesRaynard/Update-Modern-Cpp
+[submodule "ud/jr/Update-to-Cpp17"]
+	path = ud/jr/Update-to-Cpp17
+	url = https://github.com/JamesRaynard/Update-to-Cpp17
