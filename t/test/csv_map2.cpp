@@ -22,6 +22,7 @@
 #include <iostream>
 #include <map>
 #include <algorithm>
+#include <memory>
 
 #include "csv.h"
 
@@ -29,40 +30,26 @@ int main(void)
 {
     int retval = 0;
 
-    std::vector<std::pair<std::map<std::string, std::string>, std::map<std::string, std::string>>> vpm_;
-
-    std::vector<std::string> csv_text_;
-
-    auto r = read_csv_file("files/colrowhdr.csv", csv_text_);
-    retval = r;
-    std::vector<std::string> k_;
-    split(csv_text_.front(), ',', k_);
+    std::vector<std::pair<std::shared_ptr<std::map<std::string, std::string>>, std::shared_ptr<std::map<std::string, std::string>>>> vpm_;
 
     const std::vector<unsigned long int> ndx {0, 1};
 
-    std::vector<std::string> ik_;
-    /* ik_.push_back(k_.at(0)); */
-    retval = construct_index(k_, ndx, ik_);
+    const auto csv_text_ = read_csv_file("files/colrowhdr.csv", retval);
+    const auto k_ = split(csv_text_->front(), ',', retval);
+    const auto ik_ = construct_index(k_, ndx, retval);
 
-    for(unsigned long int i = 1; i < csv_text_.size(); ++i)
+    for(unsigned long int i = 1; i < csv_text_->size(); ++i)
     {
-        std::vector<std::string> v_;
-        split(csv_text_.at(i), ',', v_);
+        const auto v_ = split(csv_text_->at(i), ',', retval);
+        const auto iv_ = construct_index(v_, ndx, retval);
 
-        std::vector<std::string> iv_;
-        /* iv_.push_back(v_.at(0)); */
-        retval = construct_index(v_, ndx, iv_);
+        const auto i_ = construct_map(ik_, iv_, retval);
+        const auto m_ = construct_map(k_, v_, retval);
 
-        std::map<std::string, std::string> i_;
-        retval = construct_map(ik_, iv_, i_);
-
-        std::map<std::string, std::string> m_;
-        retval = construct_map(k_, v_, m_);
-
-        /* std::for_each(i_.begin(), i_.end(), */
+        /* std::for_each(i_->begin(), i_->end(), */
         /*         [](const std::pair<std::string, std::string>& p_) */
         /*             { std::cout << "index \t" << p_.first << '\t' << p_.second << '\n'; }); */
-        /* std::for_each(m_.begin(), m_.end(), */
+        /* std::for_each(m_->begin(), m_->end(), */
         /*         [](const std::pair<std::string, std::string>& p_) */
         /*             { std::cout << "row \t" << p_.first << '\t' << p_.second << '\n'; }); */
 
@@ -70,10 +57,10 @@ int main(void)
     }
 
     std::for_each(vpm_.begin(), vpm_.end(),
-            [](const std::pair<std::map<std::string, std::string>, std::map<std::string, std::string>>& p_)
+            [](const std::pair<std::shared_ptr<std::map<std::string, std::string>>, std::shared_ptr<std::map<std::string, std::string>>>& p_)
                 {
-                    std::map<std::string, std::string> f_ = p_.first;
-                    std::map<std::string, std::string> s_ = p_.second;
+                    auto f_ = *(p_.first);
+                    auto s_ = *(p_.second);
                     std::cout << "index \t";
                     /* std::for_each(f_.begin(), f_.end(), */
                     /*         [](const std::pair<std::string, std::string>& pf_) */

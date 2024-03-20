@@ -22,6 +22,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <memory>
 
 #include "csv.h"
 
@@ -29,28 +30,23 @@ int main(void)
 {
     int retval = 0;
 
-    std::vector<std::string> csv_text_;
-
-    auto r = read_csv_file("files/formap.csv", csv_text_);
-    retval = r;
-    std::vector<std::string> k_;
-    std::vector<std::string> v_;
-
-    split(csv_text_.front(), ',', k_);
-    split(csv_text_.back(), ',', v_);
+    const auto csv_text_ = read_csv_file("files/colrowhdr.csv", retval);
+    const auto k_ = split(csv_text_->front(), ',', retval);
+    const auto v_ = split(csv_text_->back(), ',', retval);
 
 #if 0
     std::vector<std::pair<std::string, std::string>> vp_;
-    vp_.reserve(k_.size());
-    std::transform(k_.begin(), k_.end(), v_.begin(), std::back_inserter(vp_),
+    vp_.reserve(k_->size());
+    std::transform(k_->begin(), k_->end(), v_->begin(), std::back_inserter(vp_),
             [](std::string k, std::string v)
                 { return std::make_pair(k, v); });
 
-    std::map<std::string, std::string> m_;
+    std::shared_ptr<std::map<std::string, std::string>> m_ =
+        std::make_shared<std::map<std::string, std::string>>();
     for (auto& p_ : vp_)
     {
         /* m_[p_.first] = p_.second; */
-        m_.insert(p_);
+        m_->insert(p_);
     }
 
     /* for (const auto& p_ : m_) */
@@ -58,11 +54,10 @@ int main(void)
     /*     std::cout << '\t' << p_.first << '\t' << p_.second << '\n'; */
     /* } */
 #else
-    std::map<std::string, std::string> m_;
-    retval = construct_map(k_, v_, m_);
+    const auto m_ = construct_map(k_, v_, retval);
 #endif
 
-    std::for_each(m_.begin(), m_.end(),
+    std::for_each(m_->begin(), m_->end(),
             [](const std::pair<std::string, std::string>& p_)
                 { std::cout << '\t' << p_.first << '\t' << p_.second << '\n'; });
 

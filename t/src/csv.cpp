@@ -23,86 +23,107 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <memory>
 
-#define _STRINGIFY(x) #x
-#define STRINGIFY(x) _STRINGIFY(x)
-
-int construct_index(
-            const std::vector<std::string>& v,
+std::shared_ptr<std::vector<std::string>> construct_index(
+            const std::shared_ptr<std::vector<std::string>>& v,
             const std::vector<unsigned long int>& i,
-            std::vector<std::string>& o
+            int& retval
         )
 {
-    int retval = 0;
+    retval = 0;
+
+    std::shared_ptr<std::vector<std::string>> ov =
+        std::make_shared<std::vector<std::string>>();
 
     for(auto& i_ : i)
     {
-        o.push_back(v.at(i_));
+        ov->push_back(v->at(i_));
     }
 
-    return retval;
+    return ov;
 }
 
-int construct_map(
-            const std::vector<std::string>& k,
-            const std::vector<std::string>& v,
-            std::map<std::string, std::string>& m
+std::shared_ptr<std::map<std::string, std::string>> construct_map(
+            const std::shared_ptr<std::vector<std::string>>& c,
+            int& retval
         )
 {
-    int retval = 0;
+    retval = 0;
+
+    return nullptr;
+}
+
+std::shared_ptr<std::map<std::string, std::string>> construct_map(
+            const std::shared_ptr<std::vector<std::string>>& k,
+            const std::shared_ptr<std::vector<std::string>>& v,
+            int& retval
+        )
+{
+    retval = 0;
+
+    std::shared_ptr<std::map<std::string, std::string>> om =
+        std::make_shared<std::map<std::string, std::string>>();
 
     std::vector<std::pair<std::string, std::string>> vp;
-    vp.reserve(k.size());
-    std::transform(k.begin(), k.end(), v.begin(), std::back_inserter(vp),
+    vp.reserve(k->size());
+    std::transform(k->begin(), k->end(), v->begin(), std::back_inserter(vp),
             [](std::string k, std::string v)
                 { return std::make_pair(k, v); });
 
     for (auto& p : vp)
     {
         /* m_[p_.first] = p_.second; */
-        m.insert(p);
+        om->insert(p);
     }
 
-    return retval;
+    return om;
 }
 
-int split(
+std::shared_ptr<std::vector<std::string>> split(
             const std::string& s,
             const char delim,
-            std::vector<std::string>& o
+            int& retval
         )
 {
-    int retval = 0;
+    retval = 0;
+
+    std::shared_ptr<std::vector<std::string>> ov =
+        std::make_shared<std::vector<std::string>>();
+
     std::istringstream ss_(s);
     for(std::string l; std::getline(ss_, l, delim);)
     {
-        o.push_back(l);
+        ov->push_back(l);
     }
     /* std::cout << o.size() << '\n'; */
-    return retval;
+
+    return ov;
 }
 
-int read_csv_string(
+std::shared_ptr<std::vector<std::string>> read_csv_string(
             const std::string& s,
-            std::vector<std::string>& o
+            int& retval
         )
 {
-    int retval = 0;
-    retval = split(s, '\n', o);
-    return retval;
+    retval = 0;
+
+    return split(s, '\n', retval);
 }
 
-int read_csv_file(
+std::shared_ptr<std::vector<std::string>> read_csv_file(
             const std::string& f,
-            std::vector<std::string>& o
+            int& retval
         )
 {
-    int retval = 0;
+    retval = 0;
 
     /* std::string root_ = STRINGIFY(SOURCE_ROOT); */
     std::string root_ = SOURCE_ROOT; // cmake-3.28.3
     std::string fn_ = root_ + "/" + f;
     /* std::cout << '\t' << fn_ << '\n'; */
+
+    std::shared_ptr<std::vector<std::string>> ov;
 
     std::ifstream ifs_{fn_, std::ios::ate};
     if (ifs_.is_open())
@@ -114,19 +135,16 @@ int read_csv_file(
         std::string s_(sz_, '\0');
         ifs_.read(&s_[0], sz_);
 
-        retval = read_csv_string(s_, o);
-
-        /* for(std::string l; std::getline(ifs_, l);) */
-        /* { */
-        /*     o.push_back(l); */
-        /* } */
+        ov = read_csv_string(s_, retval);
     }
     else
     {
         std::cout << " XXX ifs_.is_open()" << fn_ << '\n';
-        retval = -1;
+        retval = 1;
     }
 
-    return retval;
+    ifs_.close();
+
+    return ov;
 }
 

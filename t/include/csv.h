@@ -25,6 +25,10 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <memory>
+
+#define _STRINGIFY(x) #x
+#define STRINGIFY(x) _STRINGIFY(x)
 
 template <typename M, typename P>
 void print_pair(
@@ -36,31 +40,32 @@ void print_pair(
                 { std::cout << " " << p.first << ": " << p.second; });
 }
 
-int construct_index(
-            const std::vector<std::string>& v,
+std::shared_ptr<std::vector<std::string>> construct_index(
+            const std::shared_ptr<std::vector<std::string>>& v,
             const std::vector<unsigned long int>& i,
-            std::vector<std::string>& o
+            int& retval
         );
 
-int construct_map(
-            const std::vector<std::string>& k,
-            const std::vector<std::string>& v,
-            std::map<std::string, std::string>& m
+std::shared_ptr<std::map<std::string, std::string>> construct_map(
+            const std::shared_ptr<std::vector<std::string>>& k,
+            const std::shared_ptr<std::vector<std::string>>& v,
+            int& retval
         );
 
-int split(
+std::shared_ptr<std::vector<std::string>> split(
             const std::string& s,
-            char delim, std::vector<std::string>& o
+            const char delim,
+            int& retval
         );
 
-int read_csv_string(
+std::shared_ptr<std::vector<std::string>> read_csv_string(
             const std::string& s,
-            std::vector<std::string>& o
+            int& retval
         );
 
-int read_csv_file(
+std::shared_ptr<std::vector<std::string>> read_csv_file(
             const std::string& f,
-            std::vector<std::string>& o
+            int& retval
         );
 
 #endif
