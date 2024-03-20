@@ -30,12 +30,12 @@ int main(void)
     int retval = 0;
 
     const auto csv_text_ = read_csv_file("files/colrowhdr.csv", retval);
-    for(const auto& line : *csv_text_)
+    for(const auto& line : csv_text_)
     {
-        std::shared_ptr<std::vector<std::string>> r_;
+        std::vector<std::string> r_;
         std::cout << line << '\n' << '\n';
         r_ = split(line, ',', retval);
-        for(const auto& col : *r_)
+        for(const auto& col : r_)
         {
             std::cout << '\t' << col << '\n';
         }

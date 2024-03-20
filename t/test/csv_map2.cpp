@@ -30,26 +30,26 @@ int main(void)
 {
     int retval = 0;
 
-    std::vector<std::pair<std::shared_ptr<std::map<std::string, std::string>>, std::shared_ptr<std::map<std::string, std::string>>>> vpm_;
+    std::vector<std::pair<std::map<std::string, std::string>, std::map<std::string, std::string>>> vpm_;
 
     const std::vector<unsigned long int> ndx {0, 1};
 
     const auto csv_text_ = read_csv_file("files/colrowhdr.csv", retval);
-    const auto k_ = split(csv_text_->front(), ',', retval);
+    const auto k_ = split(csv_text_.front(), ',', retval);
     const auto ik_ = construct_index(k_, ndx, retval);
 
-    for(unsigned long int i = 1; i < csv_text_->size(); ++i)
+    for(unsigned long int i = 1; i < csv_text_.size(); ++i)
     {
-        const auto v_ = split(csv_text_->at(i), ',', retval);
+        const auto v_ = split(csv_text_.at(i), ',', retval);
         const auto iv_ = construct_index(v_, ndx, retval);
 
         const auto i_ = construct_map(ik_, iv_, retval);
         const auto m_ = construct_map(k_, v_, retval);
 
-        /* std::for_each(i_->begin(), i_->end(), */
+        /* std::for_each(i_.begin(), i_.end(), */
         /*         [](const std::pair<std::string, std::string>& p_) */
         /*             { std::cout << "index \t" << p_.first << '\t' << p_.second << '\n'; }); */
-        /* std::for_each(m_->begin(), m_->end(), */
+        /* std::for_each(m_.begin(), m_.end(), */
         /*         [](const std::pair<std::string, std::string>& p_) */
         /*             { std::cout << "row \t" << p_.first << '\t' << p_.second << '\n'; }); */
 
@@ -57,10 +57,10 @@ int main(void)
     }
 
     std::for_each(vpm_.begin(), vpm_.end(),
-            [](const std::pair<std::shared_ptr<std::map<std::string, std::string>>, std::shared_ptr<std::map<std::string, std::string>>>& p_)
+            [](const std::pair<std::map<std::string, std::string>, std::map<std::string, std::string>>& p_)
                 {
-                    auto f_ = *(p_.first);
-                    auto s_ = *(p_.second);
+                    auto f_ = p_.first;
+                    auto s_ = p_.second;
                     std::cout << "index \t";
                     /* std::for_each(f_.begin(), f_.end(), */
                     /*         [](const std::pair<std::string, std::string>& pf_) */

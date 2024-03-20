@@ -23,64 +23,61 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
-#include <memory>
 
-std::shared_ptr<std::vector<std::string>> construct_index(
-            const std::shared_ptr<std::vector<std::string>>& v,
+std::vector<std::string> construct_index(
+            const std::vector<std::string>& v,
             const std::vector<unsigned long int>& i,
             int& retval
         )
 {
     retval = 0;
 
-    std::shared_ptr<std::vector<std::string>> ov =
-        std::make_shared<std::vector<std::string>>();
+    std::vector<std::string> ov;
 
     for(auto& i_ : i)
     {
-        ov->push_back(v->at(i_));
+        ov.push_back(v.at(i_));
     }
 
     return ov;
 }
 
-std::shared_ptr<std::map<std::string, std::string>> construct_map(
-            const std::shared_ptr<std::vector<std::string>>& c,
+std::map<std::string, std::string> construct_map(
+            const std::vector<std::string>& c,
             int& retval
         )
 {
     retval = 0;
 
-    return nullptr;
+    return {};
 }
 
-std::shared_ptr<std::map<std::string, std::string>> construct_map(
-            const std::shared_ptr<std::vector<std::string>>& k,
-            const std::shared_ptr<std::vector<std::string>>& v,
+std::map<std::string, std::string> construct_map(
+            const std::vector<std::string>& k,
+            const std::vector<std::string>& v,
             int& retval
         )
 {
     retval = 0;
 
-    std::shared_ptr<std::map<std::string, std::string>> om =
-        std::make_shared<std::map<std::string, std::string>>();
+    std::map<std::string, std::string> om;
 
     std::vector<std::pair<std::string, std::string>> vp;
-    vp.reserve(k->size());
-    std::transform(k->begin(), k->end(), v->begin(), std::back_inserter(vp),
+    vp.reserve(k.size());
+    std::transform(k.begin(), k.end(), v.begin(), std::back_inserter(vp),
             [](std::string k, std::string v)
                 { return std::make_pair(k, v); });
 
     for (auto& p : vp)
     {
         /* m_[p_.first] = p_.second; */
-        om->insert(p);
+        om.insert(p);
     }
 
     return om;
 }
 
-std::shared_ptr<std::vector<std::string>> split(
+std::vector<std::string> split(
             const std::string& s,
             const char delim,
             int& retval
@@ -88,20 +85,19 @@ std::shared_ptr<std::vector<std::string>> split(
 {
     retval = 0;
 
-    std::shared_ptr<std::vector<std::string>> ov =
-        std::make_shared<std::vector<std::string>>();
+    std::vector<std::string> ov;
 
     std::istringstream ss_(s);
     for(std::string l; std::getline(ss_, l, delim);)
     {
-        ov->push_back(l);
+        ov.push_back(l);
     }
-    /* std::cout << o.size() << '\n'; */
+    /* std::cout << ov.size() << '\n'; */
 
     return ov;
 }
 
-std::shared_ptr<std::vector<std::string>> read_csv_string(
+std::vector<std::string> read_csv_string(
             const std::string& s,
             int& retval
         )
@@ -111,7 +107,7 @@ std::shared_ptr<std::vector<std::string>> read_csv_string(
     return split(s, '\n', retval);
 }
 
-std::shared_ptr<std::vector<std::string>> read_csv_file(
+std::vector<std::string> read_csv_file(
             const std::string& f,
             int& retval
         )
@@ -123,7 +119,7 @@ std::shared_ptr<std::vector<std::string>> read_csv_file(
     std::string fn_ = root_ + "/" + f;
     /* std::cout << '\t' << fn_ << '\n'; */
 
-    std::shared_ptr<std::vector<std::string>> ov;
+    std::vector<std::string> ov;
 
     std::ifstream ifs_{fn_, std::ios::ate};
     if (ifs_.is_open())

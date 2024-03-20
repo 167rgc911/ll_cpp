@@ -25,7 +25,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <memory>
 
 #define _STRINGIFY(x) #x
 #define STRINGIFY(x) _STRINGIFY(x)
@@ -40,30 +39,30 @@ void print_pair(
                 { std::cout << " " << p.first << ": " << p.second; });
 }
 
-std::shared_ptr<std::vector<std::string>> construct_index(
-            const std::shared_ptr<std::vector<std::string>>& v,
+std::vector<std::string> construct_index(
+            const std::vector<std::string>& v,
             const std::vector<unsigned long int>& i,
             int& retval
         );
 
-std::shared_ptr<std::map<std::string, std::string>> construct_map(
-            const std::shared_ptr<std::vector<std::string>>& k,
-            const std::shared_ptr<std::vector<std::string>>& v,
+std::map<std::string, std::string> construct_map(
+            const std::vector<std::string>& k,
+            const std::vector<std::string>& v,
             int& retval
         );
 
-std::shared_ptr<std::vector<std::string>> split(
+std::vector<std::string> split(
             const std::string& s,
             const char delim,
             int& retval
         );
 
-std::shared_ptr<std::vector<std::string>> read_csv_string(
+std::vector<std::string> read_csv_string(
             const std::string& s,
             int& retval
         );
 
-std::shared_ptr<std::vector<std::string>> read_csv_file(
+std::vector<std::string> read_csv_file(
             const std::string& f,
             int& retval
         );
