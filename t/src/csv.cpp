@@ -24,6 +24,8 @@
 #include <iostream>
 #include <algorithm>
 
+#include "csv.h"
+
 std::vector<std::string> construct_index(
             const std::vector<std::string>& v,
             const std::vector<unsigned long int>& i,
@@ -43,13 +45,16 @@ std::vector<std::string> construct_index(
 }
 
 std::map<std::string, std::string> construct_map(
-            const std::vector<std::string>& c,
+            const std::vector<std::string>& s,
             int& retval
         )
 {
     retval = 0;
 
-    return {};
+    const auto k_ = split(s.front(), ',', retval);
+    const auto v_ = split(s.back(), ',', retval);
+
+    return construct_map(k_, v_, retval);
 }
 
 std::map<std::string, std::string> construct_map(

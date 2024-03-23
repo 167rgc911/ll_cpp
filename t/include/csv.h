@@ -46,6 +46,11 @@ std::vector<std::string> construct_index(
         );
 
 std::map<std::string, std::string> construct_map(
+            const std::vector<std::string>& s,
+            int& retval
+        );
+
+std::map<std::string, std::string> construct_map(
             const std::vector<std::string>& k,
             const std::vector<std::string>& v,
             int& retval
