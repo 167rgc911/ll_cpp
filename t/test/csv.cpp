@@ -33,12 +33,13 @@ int main(void)
     for(const auto& line : csv_text_)
     {
         std::vector<std::string> r_;
-        std::cout << line << '\n' << '\n';
+        /* std::cout << line << '\n' << '\n'; */
         r_ = split(line, ',', retval);
-        for(const auto& col : r_)
-        {
-            std::cout << '\t' << col << '\n';
-        }
+        std::for_each(r_.begin(), r_.end(),
+                [](const std::string& col) {
+                    std::cout << col << ", ";
+                });
+        std::cout << '\n';
     }
 
     return retval;
