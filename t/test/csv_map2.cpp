@@ -32,7 +32,7 @@ int main(void)
 
     std::vector<std::pair<std::map<std::string, std::string>, std::map<std::string, std::string>>> vpm_;
 
-    const std::vector<unsigned long int> ndx {0, 1};
+    const auto ndx = std::vector<unsigned long int>{0, 1};
 
     const auto csv_text_ = read_csv_file("files/colrowhdr.csv", retval);
     const auto k_ = split(csv_text_.front(), ',', retval);

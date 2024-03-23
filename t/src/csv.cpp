@@ -120,8 +120,8 @@ std::vector<std::string> read_csv_file(
     retval = 0;
 
     /* std::string root_ = STRINGIFY(SOURCE_ROOT); */
-    std::string root_ = SOURCE_ROOT; // cmake-3.28.3
-    std::string fn_ = root_ + "/" + f;
+    const auto& root_ = std::string{SOURCE_ROOT}; // cmake-3.28.3
+    const auto& fn_ = root_ + "/" + f;
     /* std::cout << '\t' << fn_ << '\n'; */
 
     std::vector<std::string> ov;

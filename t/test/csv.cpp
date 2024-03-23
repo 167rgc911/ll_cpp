@@ -32,9 +32,8 @@ int main(void)
     const auto csv_text_ = read_csv_file("files/colrowhdr.csv", retval);
     for(const auto& line : csv_text_)
     {
-        std::vector<std::string> r_;
         /* std::cout << line << '\n' << '\n'; */
-        r_ = split(line, ',', retval);
+        auto r_ = split(line, ',', retval);
         std::for_each(r_.begin(), r_.end(),
                 [](const std::string& col) {
                     std::cout << col << ", ";

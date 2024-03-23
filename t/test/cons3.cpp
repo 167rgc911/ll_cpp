@@ -22,11 +22,11 @@
 
 int main(void)
 {
-    std::pair<std::string, std::string> p("p0", "p1");
-    AA<std::string, std::string> aa(p);
+    auto p = std::pair<std::string, std::string>{"p0", "p1"};
+    auto aa = AA<std::string, std::string>{p};
     aa.print("init aa ");
 
-    AA<std::string, std::string> bb("p0", "p1");
+    auto bb = AA<std::string, std::string>{"p0", "p1"};
     bb.print("init bb ");
 
     if (bb == aa)
