@@ -26,6 +26,54 @@
 
 #include "csv.h"
 
+std::map<std::string, std::string> map_contains(
+            const std::vector<std::map<std::string, std::string>>& vmss,
+            const std::map<std::string, std::string>& match_items,
+            int& retval
+        )
+{
+    retval = 0;
+
+    std::vector<bool> vb_o(vmss.size(), true);
+    std::vector<bool> vv;
+
+    for (const auto l : vmss)
+    {
+        bool r {true};
+        std::vector<bool> mr;
+        std::transform(match_items.cbegin(), match_items.cend(),
+            std::back_inserter(mr),
+            [l](std::pair<std::string, std::string> p)
+            {
+                return l.at(p.first) == p.second;
+            }
+        );
+        for (auto m : mr)
+        {
+            r = r && m;
+        }
+        vv.push_back(r);
+        mr.clear();
+    }
+
+    std::transform(vb_o.cbegin(), vb_o.cend(),
+        vv.cbegin(), vb_o.begin(),
+        [](bool sr, bool tr) {return sr && tr; }
+    );
+
+    auto p = std::find_if(vb_o.cbegin(), vb_o.cend(), [] (bool v) { return v == true; });
+    if (! (p == vb_o.cend()))
+    {
+        auto d = std::distance(vb_o.cbegin(), p);
+        /* std::cout << "\n" << "Match at pos " << d << "\n"; */
+        retval = 1;
+        return vmss.at(d);
+    }
+
+    /* std::cout << "\n" << "No match found!" << "\n"; */
+    return {};
+}
+
 std::vector<std::string> construct_index(
             const std::vector<std::string>& v,
             const std::vector<unsigned long int>& i,

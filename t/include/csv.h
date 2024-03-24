@@ -39,6 +39,12 @@ void print_pair(
                 { std::cout << " " << p.first << ": " << p.second; });
 }
 
+std::map<std::string, std::string> map_contains(
+            const std::vector<std::map<std::string, std::string>>& vmss,
+            const std::map<std::string, std::string>& match_items,
+            int& retval
+        );
+
 std::vector<std::string> construct_index(
             const std::vector<std::string>& v,
             const std::vector<unsigned long int>& i,

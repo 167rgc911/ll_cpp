@@ -34,3 +34,20 @@ set_property(TEST csv_map2 PROPERTY
     FAIL_REGULAR_EXPRESSION "XXX [^a-z]"
 )
 
+add_executable(search search.cpp)
+target_link_libraries(search csv_io)
+add_test(NAME search COMMAND search)
+
+add_executable(search2 search2.cpp)
+target_link_libraries(search2 csv_io)
+add_test(NAME search2 COMMAND search2)
+
+add_executable(search3 search3.cpp)
+target_link_libraries(search3 csv_io)
+add_test(NAME search3 COMMAND search3)
+
+add_executable(search_notfound search_notfound.cpp)
+target_link_libraries(search_notfound csv_io)
+add_test(NAME search_notfound COMMAND search_notfound)
+set_property(TEST search_notfound PROPERTY WILL_FAIL TRUE)
+
