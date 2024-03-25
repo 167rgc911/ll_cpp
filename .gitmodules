@@ -10,6 +10,3 @@
 [submodule "ud/jr/Update-to-Cpp17"]
 	path = ud/jr/Update-to-Cpp17
 	url = https://github.com/JamesRaynard/Update-to-Cpp17
-[submodule "cpp2/cppfront"]
-	path = cpp2/cppfront
-	url = https://github.com/modern-cmake/cppfront
