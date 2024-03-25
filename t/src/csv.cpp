@@ -58,7 +58,7 @@ std::map<std::string, std::string> map_contains(
 
     std::transform(vb_o.cbegin(), vb_o.cend(),
         vv.cbegin(), vb_o.begin(),
-        [](bool sr, bool tr) {return sr && tr; }
+        [](bool sr, bool tr) { return sr && tr; }
     );
 
     auto p = std::find_if(vb_o.cbegin(), vb_o.cend(), [] (bool v) { return v == true; });
