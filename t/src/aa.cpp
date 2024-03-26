@@ -3,7 +3,7 @@
  *
  *       Filename:  aa.cxx
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  03/08/24 20:59:29
@@ -11,13 +11,13 @@
  *       Compiler:  gcc
  *
  *         Author:  rgc (rgc), sessyargc.jp@gmail.com
- *   Organization:  
+ *   Organization:
  *
  * =====================================================================================
  */
 
-int main(void)
+int
+main (void)
 {
-    return 0;
+  return 0;
 }
-

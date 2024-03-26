@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  search.cpp
+ *       Filename:  exception_at_pos.cpp
  *
  *    Description:
  *
  *        Version:  1.0
- *        Created:  03/24/24 16:52:31
+ *        Created:  03/25/24 18:26:58
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -35,16 +35,11 @@ main (void)
   };
 
   const std::vector<std::map<std::string, std::string>> match_items{
-    { { "line", "2" }, { "one", "1" }, { "two", "2" } },
+    { { "line", "4" }, { "one", "1" }, { "two", "2" } },
   };
 
-  for (const auto m : match_items)
-    {
-      std::cout << "match_items: ";
-      auto r = map_contains (vmss, m, retval);
-      std::cout << retval << '\n';
-      retval = !retval;
-    }
+  auto r = map_at_pos (vmss, 99, retval);
+  retval = !retval;
 
   return retval;
 }

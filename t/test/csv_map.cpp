@@ -3,7 +3,7 @@
  *
  *       Filename:  csv_map.cpp
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  03/16/24 10:00:19
@@ -11,27 +11,28 @@
  *       Compiler:  gcc
  *
  *         Author:  rgc (rgc), sessyargc.jp@gmail.com
- *   Organization:  
+ *   Organization:
  *
  * =====================================================================================
  */
 
+#include <algorithm>
+#include <fstream>
+#include <iostream>
 #include <map>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <iostream>
-#include <algorithm>
 
 #include "csv.h"
 
-int main(void)
+int
+main (void)
 {
-    int retval = 0;
+  int retval = 0;
 
-    const auto csv_text_ = read_csv_file("files/colrowhdr.csv", retval);
-    const auto k_ = split(csv_text_.front(), ',', retval);
-    const auto v_ = split(csv_text_.back(), ',', retval);
+  const auto csv_text_ = read_csv_file ("files/colrowhdr.csv", retval);
+  const auto k_ = split (csv_text_.front (), ',', retval);
+  const auto v_ = split (csv_text_.back (), ',', retval);
 
 #if 0
     std::vector<std::pair<std::string, std::string>> vp_;
@@ -52,13 +53,13 @@ int main(void)
     /*     std::cout << '\t' << p_.first << '\t' << p_.second << '\n'; */
     /* } */
 #else
-    const auto m_ = construct_map(k_, v_, retval);
+  const auto m_ = construct_map (k_, v_, retval);
 #endif
 
-    std::for_each(m_.begin(), m_.end(),
-            [](const std::pair<std::string, std::string>& p_)
-                { std::cout << '\t' << p_.first << '\t' << p_.second << '\n'; });
+  std::for_each (m_.begin (), m_.end (),
+                 [] (const std::pair<std::string, std::string> &p_) {
+                   std::cout << '\t' << p_.first << '\t' << p_.second << '\n';
+                 });
 
-    return retval;
+  return retval;
 }
-
