@@ -27,6 +27,13 @@
 #include "csv.h"
 
 std::map<std::string, std::string>
+map_at_pos (const std::vector<std::map<std::string, std::string>> &vmss,
+            const unsigned int p, int &retval)
+{
+  return vmss.at (p);
+}
+
+std::map<std::string, std::string>
 map_contains (const std::vector<std::map<std::string, std::string>> &vmss,
               const std::map<std::string, std::string> &match_items,
               int &retval)
@@ -62,8 +69,17 @@ map_contains (const std::vector<std::map<std::string, std::string>> &vmss,
     {
       auto d = std::distance (vb_o.cbegin (), p);
       /* std::cout << "\n" << "Match at pos " << d << "\n"; */
-      retval = 1;
-      return vmss.at (d);
+      try
+        {
+          auto o = map_at_pos (vmss, d, retval);
+          retval = 1;
+          return o;
+        }
+      catch (const std::out_of_range &oor)
+        {
+          std::cout << "Exception: " << oor.what () << '\n';
+          retval = 0;
+        }
     }
 
   /* std::cout << "\n" << "No match found!" << "\n"; */

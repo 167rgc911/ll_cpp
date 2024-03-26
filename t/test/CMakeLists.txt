@@ -51,3 +51,8 @@ target_link_libraries(search_notfound csv_io)
 add_test(NAME search_notfound COMMAND search_notfound)
 set_property(TEST search_notfound PROPERTY WILL_FAIL TRUE)
 
+add_executable(exception_at_pos exception_at_pos.cpp)
+target_link_libraries(exception_at_pos csv_io)
+add_test(NAME exception_at_pos COMMAND exception_at_pos)
+set_property(TEST exception_at_pos PROPERTY WILL_FAIL TRUE)
+

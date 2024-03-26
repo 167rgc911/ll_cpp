@@ -42,6 +42,9 @@ std::map<std::string, std::string>
 map_contains (const std::vector<std::map<std::string, std::string>> &vmss,
               const std::map<std::string, std::string> &match_items,
               int &retval);
+std::map<std::string, std::string>
+map_at_pos (const std::vector<std::map<std::string, std::string>> &vmss,
+            const unsigned int p, int &retval);
 
 std::vector<std::string>
 construct_index (const std::vector<std::string> &v,
