@@ -1,0 +1,53 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  timer.h2
+ *
+ *    Description:
+ *
+ *        Version:  1.0
+ *        Created:  03/28/24 18:16:08
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  rgc (rgc), sessyargc.jp@gmail.com
+ *   Organization:
+ *
+ * =====================================================================================
+ */
+
+chr : namespace == std::chrono;
+
+timer: @struct type = {
+        t0_: std::chrono::time_point<std::chrono::high_resolution_clock> =
+               std::chrono::high_resolution_clock::now();
+        tl_: std::vector<std::pair<std::string,
+               std::chrono::time_point<std::chrono::high_resolution_clock>>> = ();
+
+        nt: (inout this) = {
+              std::cout << tl_.capacity() << " -> ";
+              tl_.reserve(128);
+              std::cout << tl_.capacity() << " :\n";
+            }
+
+        st: (inout this, move s: std::string) = {
+              tl_.push_back(std::make_pair(s, std::chrono::high_resolution_clock::now()));
+            }
+
+        pr: (this) = {
+              ad: std::vector<double> = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::micro>(p_.second - t0_);
+                std::cout << p_.first << ": " << d.count() << " us\n";
+                ad.push_back(d.count());
+              }
+              std::adjacent_difference(ad.begin(), ad.end(), ad.begin());
+              for ad
+              do (in p_)
+              {
+                std::cout << p_ << " us\n";
+              }
+            }
+       }

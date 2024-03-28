@@ -56,3 +56,7 @@ target_link_libraries(exception_at_pos csv_io)
 add_test(NAME exception_at_pos COMMAND exception_at_pos)
 set_property(TEST exception_at_pos PROPERTY WILL_FAIL TRUE)
 
+add_executable(test_timer timer.cpp)
+target_link_libraries(test_timer timer)
+add_test(NAME test_timer COMMAND test_timer)
+
