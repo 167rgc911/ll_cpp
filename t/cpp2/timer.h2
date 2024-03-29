@@ -74,7 +74,7 @@ timer2: @struct type = {
               tl_.push_back(std::make_pair(l, std::chrono::high_resolution_clock::now()));
             }
 
-        pr: (this) = {
+        pr0: (this) = {
               ad: std::vector<double> = ();
               for tl_
               do (in p_)
@@ -88,6 +88,18 @@ timer2: @struct type = {
               do (in p_)
               {
                 std::cout << p_ << " us\n";
+              }
+            }
+
+        pr: (this) = {
+              df: double = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::micro>(p_.second - t0_).count();
+                std::cout << std::setw(8) << std::setprecision(6) << p_.first << " : (";
+                std::cout << std::setw(8) << std::setprecision(6) << d - df << ") us\n";
+                df = d;
               }
             }
        }
