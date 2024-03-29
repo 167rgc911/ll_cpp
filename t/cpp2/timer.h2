@@ -102,4 +102,28 @@ timer2: @struct type = {
                 df = d;
               }
             }
+
+        pru: (this) = {
+              df: double = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::micro>(p_.second - t0_).count();
+                std::cout << std::setw(8) << std::setprecision(6) << p_.first << " : (";
+                std::cout << std::setw(8) << std::setprecision(6) << d - df << ") us\n";
+                df = d;
+              }
+            }
+
+        prn: (this) = {
+              df: double = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::nano>(p_.second - t0_).count();
+                std::cout << std::setw(8) << std::setprecision(16) << p_.first << " : (";
+                std::cout << std::setw(8) << std::setprecision(16) << d - df << ") ns\n";
+                df = d;
+              }
+            }
        }
