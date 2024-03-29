@@ -66,7 +66,29 @@ set(MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
 #     )
 # endif()
 
+include(FetchContent)
+FetchContent_Populate(
+  cppfront
+  URL https://github.com/hsutter/cppfront/archive/refs/tags/v0.7.0.tar.gz
+  SOURCE_DIR cppfront
+)
+add_executable(cppfront-0.7.0 cppfront/source/cppfront.cpp)
+target_sources(
+  cppfront-0.7.0
+  PUBLIC
+  FILE_SET HEADERS
+  BASE_DIRS ${cppfront_SOURCE_DIR}/source
+  FILES ${cppfront_SOURCE_DIR}/source/common.h
+    ${cppfront_SOURCE_DIR}/source/io.h
+    ${cppfront_SOURCE_DIR}/source/lex.h
+    ${cppfront_SOURCE_DIR}/source/parse.h
+    ${cppfront_SOURCE_DIR}/source/reflect.h
+    ${cppfront_SOURCE_DIR}/source/sema.h
+)
+
+
 include_directories(include)
+include_directories(${cppfront_SOURCE_DIR}/include)
 
 add_subdirectory(src)
 
