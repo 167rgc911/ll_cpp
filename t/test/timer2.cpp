@@ -46,8 +46,4 @@ main (void)
   t.st (__LINE__);
   t.pr ();
   t.prn ();
-  t.st (__LINE__);
-  t.dummy0 ();
-  t.st (__LINE__);
-  t.prn ();
 }

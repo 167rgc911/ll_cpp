@@ -64,3 +64,7 @@ add_executable(test_timer2 timer2.cpp)
 target_link_libraries(test_timer2 timer)
 add_test(NAME test_timer2 COMMAND test_timer2)
 
+add_executable(test_timer2_1 timer2_1.cpp)
+target_link_libraries(test_timer2_1 timer)
+add_test(NAME test_timer2_1 COMMAND test_timer2_1)
+

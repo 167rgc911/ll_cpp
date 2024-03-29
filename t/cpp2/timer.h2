@@ -76,6 +76,27 @@ timer2: @struct type = {
               tl_.push_back(std::make_pair(l, std::chrono::high_resolution_clock::now()));
             }
 
+        dummy0: (this) = {
+              ad: std::vector<double> = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::micro>(p_.second - t0_);
+                ad.push_back(d.count());
+              }
+              std::adjacent_difference(ad.begin(), ad.end(), ad.begin());
+            }
+
+        dummy1: (this) = {
+              df: double = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::micro>(p_.second - t0_).count();
+                df = d;
+              }
+            }
+
         pr0: (this) = {
               ad: std::vector<double> = ();
               for tl_
