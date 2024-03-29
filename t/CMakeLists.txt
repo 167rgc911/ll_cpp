@@ -46,7 +46,7 @@ add_link_options(
 
 add_compile_options(
     "-Wall" "-Wpedantic" "-Wextra" "-fexceptions"
-    "$<$<CONFIG:DEBUG>:-fno-omit-frame-pointer;-O0;-g3;-glldb>"
+    "$<$<CONFIG:DEBUG>:-fno-omit-frame-pointer;-O0;-g3>"
 )
 
 # use Release build!
