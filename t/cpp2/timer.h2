@@ -59,8 +59,14 @@ timer2: @struct type = {
                std::chrono::time_point<std::chrono::high_resolution_clock>>> = ();
 
         nt: (inout this) = {
+              /* std::cout << tl_.capacity() << " -> "; */
+              /* tl_.reserve(128); */
+              /* std::cout << tl_.capacity() << " :\n"; */
+            }
+
+        rs: (inout this, n: int) = {
               std::cout << tl_.capacity() << " -> ";
-              tl_.reserve(128);
+              tl_.reserve(n);
               std::cout << tl_.capacity() << " :\n";
             }
 
