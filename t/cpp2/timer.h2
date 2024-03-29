@@ -68,6 +68,8 @@ timer2: @struct type = {
               std::cout << tl_.capacity() << " -> ";
               tl_.reserve(n);
               std::cout << tl_.capacity() << " :\n";
+
+              t0_ = std::chrono::high_resolution_clock::now();
             }
 
         st: (inout this, l: uint64_t) = {
