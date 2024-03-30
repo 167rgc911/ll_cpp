@@ -29,7 +29,7 @@ main (void)
   d0.pru ();
 
   timer2 d1;
-  d0.rs (128);
+  d1.rs (128);
   d1.st (__LINE__);
   d1.dummy1 ();
   d1.st (__LINE__);
