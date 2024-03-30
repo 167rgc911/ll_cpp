@@ -68,3 +68,9 @@ add_executable(test_timer2_1 timer2_1.cpp)
 target_link_libraries(test_timer2_1 timer)
 add_test(NAME test_timer2_1 COMMAND test_timer2_1)
 
+add_executable(timer_benchmark timer_benchmark.cpp)
+target_include_directories(timer_benchmark PUBLIC $ENV{HOME}/u/include)
+target_link_directories(timer_benchmark PUBLIC $ENV{HOME}/u/lib)
+target_link_libraries(timer_benchmark timer benchmark gmock gtest)
+add_test(NAME timer_benchmark COMMAND timer_benchmark)
+
