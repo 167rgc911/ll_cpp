@@ -150,3 +150,53 @@ timer2: @struct type = {
               }
             }
        }
+
+timer3: @struct type = {
+        t0_: std::chrono::time_point<std::chrono::high_resolution_clock> =
+               std::chrono::high_resolution_clock::now();
+        tl_: std::unordered_map<uint64_t,
+               std::chrono::time_point<std::chrono::high_resolution_clock>> = ();
+
+        nt: (inout this) = {
+            }
+
+        rs: (inout this, n: int) = {
+              std::cout << tl_.size() << " -> ";
+              tl_.reserve(n);
+              std::cout << tl_.size() << " :\n";
+
+              t0_ = std::chrono::high_resolution_clock::now();
+            }
+
+        st: (inout this, l: uint64_t) = {
+              tl_.insert(std::make_pair(l, std::chrono::high_resolution_clock::now()));
+            }
+
+        pr: (this) = {
+              pru();
+            }
+
+        pru: (this) = {
+              df: double = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::micro>(p_.second - t0_).count();
+                std::cout << std::setw(8) << std::setprecision(6) << p_.first << " : (";
+                std::cout << std::setw(8) << std::setprecision(6) << d - df << ") us\n";
+                df = d;
+              }
+            }
+
+        prn: (this) = {
+              df: double = ();
+              for tl_
+              do (in p_)
+              {
+                d := std::chrono::duration<double, std::nano>(p_.second - t0_).count();
+                std::cout << std::setw(8) << std::setprecision(16) << p_.first << " : (";
+                std::cout << std::setw(8) << std::setprecision(16) << std::abs(d - df) << ") ns\n";
+                df = d;
+              }
+            }
+       }
