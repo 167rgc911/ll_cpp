@@ -10,7 +10,6 @@ add_custom_target(timer_h2
 add_library(timer STATIC timer.cpp)
 add_dependencies(timer timer_h2)
 target_include_directories(timer PUBLIC ${PROJECT_SOURCE_DIR}/cpp2)
-target_include_directories(timer PUBLIC $ENV{HOME}/u/include)
 
 add_executable(timer_benchmark timer_benchmark.cpp)
 add_dependencies(timer_benchmark timer)
